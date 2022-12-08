@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-conn = MongoClient(
+conn = MongoClient(    #Conectar num db seu, Fernando, pois eu não tenho certeza sobre a minha senha... haha
     'mongodb+srv://@cluster0.m52rote.mongodb.net/organicos',
     username='dellamaf',
     password='33762636'
@@ -15,13 +15,13 @@ db = conn['organicos']
 def home():
     return redirect(url_for('static', filename='index.html'))
 
-@app.route('/cadastro/', methods=['GET'])
+@app.route('/cadastrar/', methods=['GET'])
 # ?nome=tomate&preco=10
 def cadastrar():
     produto = request.args.to_dict() #{'nome': 'tomate', 'preco':10}
     print(produto)
     if not produto: #{}
-        return redirect(url_for('static', filename='cadastro.html'))
+        return redirect(url_for('static', filename='cadastrar.html'))
     else: #{'nome': 'tomate', 'preco':10}
         query = db.produtos.find_one({'nome': produto['nome']})
         # find => Cursor => list(Cursor) [{}, {}]
