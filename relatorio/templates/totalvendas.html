@@ -8,10 +8,7 @@
 </head>
 <body>
     <div>
-        O produto mais vendido foi:
-    </div>
-    <div>
-        {{ maisvendido }}
+        Foram vendidos {{ dados[0] }} produtos, resultando no valor arrecadado de R$ {{ dados[1] }}.
     </div>
     <button>
         <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
