@@ -1,0 +1,11 @@
+CREATE TABLE `testevendas`.`relatorio2` (
+  `idrelatorio2` INT NOT NULL,
+  `produto` VARCHAR(20) NULL,
+  `quantidade` INT NULL,
+  `valor` DECIMAL(4,2) NULL,
+  PRIMARY KEY (`idrelatorio2`));
+
+INSERT INTO `testevendas`.`relatorio2` (`idrelatorio2`, `produto`, `quantidade`, `valor`) VALUES ('1', 'Banana', '4', '9.80');
+INSERT INTO `testevendas`.`relatorio2` (`idrelatorio2`, `produto`, `quantidade`, `valor`) VALUES ('2', 'Uva', '10', '15.20');
+INSERT INTO `testevendas`.`relatorio2` (`idrelatorio2`, `produto`, `quantidade`, `valor`) VALUES ('3', 'Jambo', '7', '14.75');
+INSERT INTO `testevendas`.`relatorio2` (`idrelatorio2`, `produto`, `quantidade`, `valor`) VALUES ('4', 'Tomate', '17', '23.60');

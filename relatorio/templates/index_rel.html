@@ -8,9 +8,26 @@
 </head>
 <body>
     <div>
-        <form action="">
-            
-        </form>
+        O que deseja fazer?
     </div>
+    <button>
+        <a href="{{ url_for('maisvendido') }}"> Apresentar o produto mais vendido </a>
+    </button>
+    <button>
+        <a href="{{ url_for('osmaisvendidos') }}"> Apresentar os produtos mais vendidos </a>
+    </button>
+    <button>
+        <a href="{{ url_for('totalDeVendas') }}"> Total de vendas realizadas(Quantidade/Valor)</a>
+    </button>
+    <button>
+        <a href="{{ url_for('maisvendido') }}"> Rank dos produtos </a>
+    </button>
+    <button>
+        <a href="{{ url_for('maisvendido') }}"> Limpar tabela de vendas </a>
+    </button>
+    <button>
+        <a href="{{ url_for('maisvendido') }}"> Consulta de vendas </a>
+    </button>
+        
 </body>
 </html>
