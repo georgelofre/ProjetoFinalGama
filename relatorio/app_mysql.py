@@ -1,19 +1,25 @@
+import requests
 from flask import Flask, render_template
 import mysql.connector
-from config import config
+from ProjetoFinalGama.relatorio.dadosbd.dadosbd import configbanco
+
+
 
 
 app = Flask(__name__)
 
 # exemplo para conectar no banco local:
-# config = {'user': 'seu usuario','password': 'senha',
-#           'host':'localhost','database':'nome do banco'}
+#config = {'user': 'usuário',
+#          'password': 'senha',
+#          'host': 'localhost',
+#          'database': 'nomedobanco'
+#          }
 # Substituir e Descomentar as duas linhas acima
 # Comentar a linha 3: from config import config
 
 #conexão com o banco mysql
 #sugestão de preenchimento do banco: olhar arquivo tabeladb.txt
-mydb = mysql.connector.connect(**config)
+mydb = mysql.connector.connect(**configbanco)
 teste = mydb.cursor()
 teste.execute("SELECT * FROM testevendas.relatorio2")
 tudo = teste.fetchall()
