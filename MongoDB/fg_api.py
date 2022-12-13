@@ -11,23 +11,23 @@ conn = MongoClient(    #Conectar num db seu, Fernando, pois eu não tenho certez
 conn = MongoClient('mongodb+srv://ficastro:jornaldb132@cluster0.dyf7dpm.mongodb.net/test')
 db = conn['Organicos']
 
-# Create
+#Início
 @app.route('/')
 def home():
     return redirect(url_for('static', filename='index.html'))
 
-@app.route('/cadastrar/', methods=['GET'])
-# ?nome=tomate&preco=10
+#Cadastramento de produtos
+@app.route('/cadastrar/', methods=['GET'])#?nome=tomate&preco=10
 def cadastrar():
     produto = request.args.to_dict()
     print(produto)
-    if not produto: #{}
+    if not produto: #Se não houver argumentos
         return redirect(url_for('static', filename='cadastrar.html'))
     else:
         query = db.produtos.find_one({'nome': produto['nome']})
-        if query: #tomate está no banco
-            return {'error': 'Produto já cadastrado!'}
-        else: # tomate não está no banco
+        if query: #Se o produto está no banco
+            return {'Produto já cadastrado!'}
+        else: #Se o produto não esta no banco
             db.produtos.insert_one(produto)
             del produto['_id']
             return produto
@@ -44,8 +44,9 @@ def cadastrar():
 #         produtos = list(cursor)
 #         return produtos
 
-@app.route('/consultar/') #?
-def consultar_nome():
+#Consulta de produtos
+@app.route('/consultar/')
+def consultar():
     produto = request.args.to_dict()
     print(produto)
     if not produto:
@@ -55,16 +56,22 @@ def consultar_nome():
         print(produto)
         if produto: #tomate está no banco
             return produto
-        else: # tomate não está no banco
+        else: #tomate não está no banco
             return {'error': 'Produto não encontrado!'}
 
 
-# Delete
-@app.route('/deletar/') #?
+#Deletar produtos
+@app.route('/deletar/')
 def deletar_nome():
+    # produto = request.args.to_dict()
+    # if not produto:
+    #     return redirect(url_for('static', filename='deletar.html'))
+    # else:
     produto = request.args.to_dict()
     if not produto:
-        return redirect(url_for('static', filename='deletar.html'))
+        produtos = list(db.produtos.find())
+        print(produtos)
+        return render_template('deletar.html', produtos=produtos)
     else:
         produto = db.produtos.find_one({'nome': produto['nome']}, {'_id':False})
         print(produto)
@@ -75,21 +82,23 @@ def deletar_nome():
             return {'error': 'Produto não encontrado!'}
 
 
-# #Alterar
-# @app.route('/alterar/<>')
-# def alterar_nome(nome,chave,valor): #?
-#     db.produtos.updateOne(
-#     <condição>,
-#     {$set:
-#         {'chave':'valor'}
-#     }
-# )
+@app.route('/atualizar/')
+def atualizar():
+    produto = request.args.to_dict()
+    if not produto:
+        produtos = list(db.produtos.find())
+        print(produtos)
+        return render_template('atualizar.html', produtos=produtos)
+    else:
+        db.produtos.update_one(
+            {'nome': produto['nome']},
+            {'$set':
+                {'preco': produto['preco'],
+                'descricao': produto['descricao']}
+            }
+        )
+        return produto
 
-
-# @app.route('/deletar/')
-# def deletar():
-#     db.produtos.drop()
-#     return {'message': 'Banco de dados apagado!'}
 
 if __name__ == '__main__':
     app.run(debug=True)
