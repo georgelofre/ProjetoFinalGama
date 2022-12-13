@@ -19,14 +19,12 @@ def home():
 @app.route('/cadastrar/', methods=['GET'])
 # ?nome=tomate&preco=10
 def cadastrar():
-    produto = request.args.to_dict() #{'nome': 'tomate', 'preco':10}
+    produto = request.args.to_dict()
     print(produto)
     if not produto: #{}
         return redirect(url_for('static', filename='cadastrar.html'))
-    else: #{'nome': 'tomate', 'preco':10}
+    else:
         query = db.produtos.find_one({'nome': produto['nome']})
-        # find => Cursor => list(Cursor) [{}, {}]
-        # find_one => {}
         if query: #tomate está no banco
             return {'error': 'Produto já cadastrado!'}
         else: # tomate não está no banco
@@ -34,44 +32,58 @@ def cadastrar():
             del produto['_id']
             return produto
 
-# Read
-@app.route('/consultar/')
-def consultar():
-    cursor = db.produtos.find({}, {'_id':False})
-    produtos = list(cursor)
-    return produtos
+# # Read
+# @app.route('/consultar/')
+# def consultar():
+#     produto = request.args.to_dict()
+#     print(produto)
+#     if not produto:
+#         return redirect(url_for('static', filename='consultar.html'))
+#     else: #{'nome': 'tomate', 'preco':10}
+#         cursor = db.produtos.find({'nome': produto['nome']}, {'_id':False})
+#         produtos = list(cursor)
+#         return produtos
 
-@app.route('/consultar/<nome>') #?
-def consultar_nome(nome):
-    produto = db.produtos.find_one({'nome': nome}, {'_id':False})
+@app.route('/consultar/') #?
+def consultar_nome():
+    produto = request.args.to_dict()
     print(produto)
-    if produto: #tomate está no banco
-        return produto
-    else: # tomate não está no banco
-        return {'error': 'Produto não encontrado!'}
+    if not produto:
+        return redirect(url_for('static', filename='consultar.html'))
+    else:
+        produto = db.produtos.find_one({'nome': produto['nome']}, {'_id':False})
+        print(produto)
+        if produto: #tomate está no banco
+            return produto
+        else: # tomate não está no banco
+            return {'error': 'Produto não encontrado!'}
 
 
 # Delete
-@app.route('/deletar/<nome>') #?
-def deletar_nome(nome):
-    produto = db.produtos.find_one({'nome': nome}, {'_id':False})
-    print(produto)
-    if produto:
-        db.produtos.delete_one({'nome': nome})
-        return {'message': 'Produto deletado com sucesso!'}
+@app.route('/deletar/') #?
+def deletar_nome():
+    produto = request.args.to_dict()
+    if not produto:
+        return redirect(url_for('static', filename='deletar.html'))
     else:
-        return {'error': 'Produto não encontrado!'}
+        produto = db.produtos.find_one({'nome': produto['nome']}, {'_id':False})
+        print(produto)
+        if produto:
+            db.produtos.delete_one({'nome': produto['nome']})
+            return {'message': 'Produto deletado com sucesso!'}
+        else:
+            return {'error': 'Produto não encontrado!'}
 
 
-#Alterar
-@app.route('/alterar/<>')
-def alterar_nome(nome,chave,valor): #?
-    db.produtos.updateOne(
-    <condição>,
-    {$set:
-        {'chave':'valor'}
-    }
-)
+# #Alterar
+# @app.route('/alterar/<>')
+# def alterar_nome(nome,chave,valor): #?
+#     db.produtos.updateOne(
+#     <condição>,
+#     {$set:
+#         {'chave':'valor'}
+#     }
+# )
 
 
 # @app.route('/deletar/')
