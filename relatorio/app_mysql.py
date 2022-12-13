@@ -1,62 +1,41 @@
-import requests
 from flask import Flask, render_template
 import mysql.connector
-from ProjetoFinalGama.relatorio.dadosbd.dadosbd import configbanco
-
-
-
-
+from ProjetoFinalGama.relatorio.dadosbd.dadosbd import configbanco,configteste
 app = Flask(__name__)
 
-# exemplo para conectar no banco local:
-#config = {'user': 'usuário',
-#          'password': 'senha',
-#          'host': 'localhost',
-#          'database': 'nomedobanco'
-#          }
-# Substituir e Descomentar as duas linhas acima
-# Comentar a linha 3: from config import config
+def create_connection_database():
+    if app.config['TESTING']: #por padrão TESTING=False
+        return mysql.connector.connect(**configteste)
+    else:
+        return mysql.connector.connect(**configbanco)
 
-#conexão com o banco mysql
-#sugestão de preenchimento do banco: olhar arquivo tabeladb.txt
-mydb = mysql.connector.connect(**configbanco)
+mydb = create_connection_database()
 teste = mydb.cursor()
-teste.execute("SELECT * FROM testevendas.relatorio2")
-tudo = teste.fetchall()
-print(tudo)
 
 @app.route('/index_relatorio')
 def index_rel():
     return render_template('index_rel.html')
 
-@app.route('/index_relatorio/maisvendido')
+@app.route('/index_relatorio/maisvendido', methods=['GET'])
 def maisvendido():
-    teste.execute("select produto from relatorio where quantidade = (select max(quantidade) from relatorio);")
+    teste.execute("select produto from relatorio01 where quantidade = (select max(quantidade) from relatorio01);")
     maisvend = teste.fetchone()
-    print(maisvend[0])
     return render_template('maisvendido.html', maisvendido=maisvend[0])
 
-@app.route('/index_relatorio/osmaisvendidos')
+@app.route('/index_relatorio/osmaisvendidos', methods=['GET'])
 def osmaisvendidos():
-    teste.execute("select produto, quantidade from relatorio where quantidade > (select avg(quantidade) from relatorio);")
+    teste.execute("select produto, quantidade from relatorio01 where quantidade > (select avg(quantidade) from relatorio01);")
     osmaisvend = teste.fetchall()
-    print(osmaisvend)
     return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
 
-@app.route('/index_relatorio/totaldevendas')
+@app.route('/index_relatorio/totaldevendas', methods=['GET'])
 def totalDeVendas():
-    teste.execute("select sum(quantidade) from relatorio2;")
+    teste.execute("select sum(quantidade) from relatorio01;")
     quant = teste.fetchone()
-    print(type(quant[0]))
-    print(quant)
     quantidade = int(quant[0])
-    print(quantidade)
-    print(f'Qtde: {quantidade}')
-    teste.execute("select sum(valor) from relatorio2;")
+    teste.execute("select sum(valor) from relatorio01;")
     arrec = teste.fetchone()
-    print(arrec)
     arrecadado = f'{float(arrec[0]):.2f}'.replace(".", ",")
-    print(f'Qtde: {arrecadado}')
     dados = [quantidade, arrecadado]
     return render_template('totalvendas.html', dados=dados)
 
