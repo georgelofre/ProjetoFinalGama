@@ -18,46 +18,78 @@
                 <div class="logo">
                     <img src="img/logo.png" alt="Sistema Orgânico">
                 </div>
-            </div>
-                
-                <div id="slider">
-                    <dl>
-                        <dt class="active">Home</dt>
-                    </dl>
-
-                    <dl class="submenu">
-                        <dt>Cadastro</dt>
-                        <dd>
-                            <a href="#">Cadastrar item</a>
-                            <a href="#">Editar item</a>
-                            <a href="#">Consultar item</a>
-                            <a href="#">Deletar item</a>
-                        </dd>
-                    </dl>
-
-                    <dl class="submenu">
-                        <dt>Carrinho</dt>
-                        <dd>
-                            <a href="#">Adicionar item</a>
-                            <a href="#">Remover item</a>
-                            <a href="#">Alterar quantidade de um item</a>
-                            <a href="#">Visualizar carrinho</a>
-                        </dd>
-                    </dl>
-
-                    <dl class="active">
-                        <dt>Gerar relatório</dt>
-                    </dl>
-                </div> 
-            </div>
-            
+            </div>   
         </header>
-    
 
-        <footer>
-            <div class="footer">
-                <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
-            </div>
+        <footer class="footer">
+            <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
         </footer>
+
+        <!-- Menu slider - posicionado por último para o z-index funcionar corretamente -->
+        <div id="slider">
+            <dl>
+                <dt>Home</dt>
+            </dl>
+
+            <dl>
+                <dt class="dropdown">Cadastro</dt>
+                <dd>
+                    <a href="#">Cadastrar item</a>
+                    <a href="#">Editar item</a>
+                    <a href="#">Consultar item</a>
+                    <a href="#">Deletar item</a>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt class="dropdown">Carrinho</dt>
+                <dd>
+                    <a href="#">Adicionar item</a>
+                    <a href="#">Remover item</a>
+                    <a href="#">Alterar quantidade de um item</a>
+                    <a href="#">Visualizar carrinho</a>
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>Gerar relatório</dt>
+            </dl>
+        </div>
+
+        <!--
+            <ul id="slider">
+            <li class="item">
+                <a href="#">Home</a>
+            </li>
+
+            <li class="item">
+                <div class="dropdown">
+                    <button class="dropdown-button">Cadastro</button>
+                    <div class="subitem">
+                        <a href="#">Cadastrar item</a>
+                        <a href="#">Editar item</a>
+                        <a href="#">Consultar item</a>
+                        <a href="#">Deletar item</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="item">
+                <div class="dropdown">
+                    <button class="dropdown-button">Carrinho</button>
+                    <div class="subitem">
+                        <a href="#">Adicionar item</a>
+                        <a href="#">Remover item</a>
+                        <a href="#">Alterar quantidade de um item</a>
+                        <a href="#">Visualizar carrinho</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="item">
+                <a href="#">Gerar relatório</a>
+            </li>
+        </ul>
+        -->
     </body>
 </html>

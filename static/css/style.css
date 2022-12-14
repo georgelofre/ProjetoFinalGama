@@ -29,36 +29,59 @@ body {
 
 /*** Menu slider***/
 #slider {
-    width:fit-content;
-    height: 100vh;
+    width: fit-content;
+    height: calc(100vh - 130px);
     position: relative;
     bottom: auto;
     right: auto;
-    z-index: 10;
+    z-index: 100;
     background-color: #D9D9D9;
     overflow-x: hidden;
     transition: all 0.5s ease;
     padding-top: 20px;
     padding-bottom: 20px;
+    box-shadow: 5px 0px 5px gray;
 }
 
 #slider dt { /*** Item ***/
     margin-left: 50px;
     margin-right: 50px;
+    margin-bottom: 10px;
     font-size: 18 px;
     font-weight: bold;
     color: #1C8B48;
     display: block;
+    cursor: pointer;
+}
+
+.dropdown {
+    overflow: auto;
+}
+
+.dropdown::after {
+        padding-left: 3px;
+          content: ' ▾';
 }
 
 #slider a { /*** Sub-item ***/
+    padding: 5px 50px 5px 50px;
     text-decoration: none;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    font-size: 16 px;
+    font-size: 16px;
     color: #1C8B48;
     display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 /*** Footer ***/
@@ -66,7 +89,8 @@ body {
     position: absolute;
     width: 100%;
     font-size: 16px;
-    margin-top: 5em;
+    margin-top: 50px;
+    margin-bottom: 50px;
     text-align: center;
     color: #1C8B48;
 }
