@@ -1,16 +1,16 @@
 from flask import Flask, render_template
 import mysql.connector as sql
-from ProjetoFinalGama.relatorio.dadosbd.dadosbd import configbanco, configteste, testando
+from ProjetoFinalGama.relatorio.dadosbd.dadossbd import configbanco, configteste, testando
 app = Flask(__name__)
 
 config = {'user': 'root',
-          'password': '1qazxsw2',
+          'password': 'Ml_339427',
           'host': 'localhost',
           'database': 'new_relatorio'
           }
 
 configteste = {'user': 'root',
-          'password': '1qazxsw2',
+          'password': 'Ml_339427',
           'host': 'localhost',
           'database': 'teste_relatorio'
           }
@@ -58,8 +58,17 @@ def rankprodutos():
     osmaisvend = teste.fetchall()
     return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
 
+@app.route('/index_relatorio/limpar', methods=['GET'])
+def limpar():
+    teste.execute("delete from relatorio01 ")
+    mydb.commit()
+    return render_template('osmaisvendidos.html')
 
-
+@app.route('/index_relatorio/consultar', methods=['GET'])
+def consultar():
+    teste.execute("select produto, quantidade from relatorio01;")
+    osmaisvend = teste.fetchall()
+    return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
 
 
 if __name__ == '__main__':
