@@ -27,46 +27,160 @@ body {
     padding-right: 50px;
 }
 
-/*** Menu slider***/
+/** Main **/
+
+.title {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+}
+
+h1 {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #1C8B48;
+}
+
+.grid {
+    display: flex;
+}
+
+.box {
+    width: 30%;
+    height: 300px;
+    margin: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 2%;
+    background-color: #D9D9D9;
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-bottom: 50px;
+}
+
+.box-title {
+    object-fit: cover;
+    width: auto;
+    height: fit-content;
+    margin-top: -10px;
+}
+
+.box h2 {
+    text-align: center;
+    color: #1C8B48;
+}
+
+.box a {
+    display: block;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 1em;
+    transition: .3s;
+    padding: 1em;
+    background-color: rgb(235, 235, 235);
+    color: #1C8B48;
+    text-decoration: none;
+}
+
+.box a:hover{
+    cursor:pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/*
+*** Menu slider***
 #slider {
-    width:fit-content;
-    height: 100vh;
+    list-style-type: none;
+    width: fit-content;
+    height: calc(100vh - 130px);
     position: relative;
     bottom: auto;
     right: auto;
-    z-index: 10;
+    z-index: 1;
     background-color: #D9D9D9;
     overflow-x: hidden;
     transition: all 0.5s ease;
     padding-top: 20px;
     padding-bottom: 20px;
+    box-shadow: 5px 0px 5px gray;
+    margin: 0px;
 }
 
-#slider dt { /*** Item ***/
-    margin-left: 50px;
+#list-item { *** Item ***
+    text-decoration: none;
+    margin-left: 8px;
     margin-right: 50px;
+    margin-bottom: 15px;
     font-size: 18 px;
     font-weight: bold;
     color: #1C8B48;
     display: block;
+    cursor: pointer;
 }
 
-#slider a { /*** Sub-item ***/
+.dropdown-button {
+    padding: 0px;
+    border: none;
+    outline: none;
+    font-size: inherit;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 10px;
+}
+
+.dropdown-button a {
     text-decoration: none;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    font-size: 16 px;
     color: #1C8B48;
+}
+
+.dropdown-button::after {
+    padding-left: 25px;
+    content: '▸';
+}
+
+* Counteúdo escondido do dropdown *
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+  }
+
+* Mostrar menu dropdown durante hover *
+.dropdown-button:hover .dropdown-content {
     display: block;
 }
+
+.dropdown-content a { *** Sub-item ***
+    padding: 5px 50px 5px 50px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #1C8B48;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+#dropdown-button text:hover, #slider a:hover {
+    color: black;
+}
+*/
 
 /*** Footer ***/
 .footer p {
     position: absolute;
     width: 100%;
     font-size: 16px;
-    margin-top: 5em;
+    margin-top: 50px;
+    padding-bottom: 50px;
     text-align: center;
     color: #1C8B48;
 }
@@ -75,7 +189,7 @@ body {
 
 .documento {
     position: relative;
-    margin-top: 50px;
+    padding-top: 30px;
     margin-bottom: 50px;
     margin-left: 200px;
     margin-right: 200px;

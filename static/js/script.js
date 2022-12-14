@@ -1,4 +1,5 @@
-/*** Função para abrir e fechar o menu slider ***/
+/*
+** Função para abrir e fechar o menu slider **
 function openMenu() {
     var x = document.getElementById("slider");
         if (x.style.display === "none") {
@@ -9,3 +10,4 @@ function openMenu() {
             x.style.display = "none";
         }
 }
+*/

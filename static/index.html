@@ -11,53 +11,102 @@
     <body>
         <header>
             <div class="navbar">
+                <!--
                 <div class="menu" id="toggle"> 
                     <input onclick="openMenu()" type="image" src="img/menu.png">
                 </div>
+                -->
 
                 <div class="logo">
                     <img src="img/logo.png" alt="Sistema Orgânico">
                 </div>
-            </div>
-                
-                <div id="slider">
-                    <dl>
-                        <dt class="active">Home</dt>
-                    </dl>
-
-                    <dl class="submenu">
-                        <dt>Cadastro</dt>
-                        <dd>
-                            <a href="#">Cadastrar item</a>
-                            <a href="#">Editar item</a>
-                            <a href="#">Consultar item</a>
-                            <a href="#">Deletar item</a>
-                        </dd>
-                    </dl>
-
-                    <dl class="submenu">
-                        <dt>Carrinho</dt>
-                        <dd>
-                            <a href="#">Adicionar item</a>
-                            <a href="#">Remover item</a>
-                            <a href="#">Alterar quantidade de um item</a>
-                            <a href="#">Visualizar carrinho</a>
-                        </dd>
-                    </dl>
-
-                    <dl class="active">
-                        <dt>Gerar relatório</dt>
-                    </dl>
-                </div> 
-            </div>
-            
+            </div>   
         </header>
-    
 
-        <footer>
-            <div class="footer">
-                <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
+        <main>
+            <div class="title">
+                <h1>Bem-vindo ao Sistema Orgânico de vendas</h1>
             </div>
+        
+            <div class="grid">
+                <div class="box">
+                    <div class="box-title">
+                        <h2>Cadastro</h2>
+                    </div>
+                    
+                    <div class="box-links">
+                        <a href="#">Cadastrar item</a>
+                        <a href="#">Editar item</a>
+                        <a href="#">Consultar item</a>
+                        <a href="#">Deletar item</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-title">
+                        <h2>Carrinho</h2>
+                    </div>
+                    
+                    <div class="box-links">
+                        <a href="#">Adicionar item</a>
+                        <a href="#">Remover item</a>
+                        <a href="#">Alterar quantidade de um item</a>
+                        <a href="#">Visualizar carrinho</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-title">
+                        <h2>Relatório</h2>
+                    </div>
+                    
+                    <div class="box-links">
+                        <a href="#">Total de vendas realizadas</a>
+                        <a href="#">Vendas de um produto</a>
+                        <a href="#">Ranking de vendas</a>
+                        <a href="#">Limpar registro de vendas</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
         </footer>
+
+        <!--
+         Menu slider - posicionado por último para o z-index funcionar corretamente 
+        <div>
+            <ul id="slider">
+                <li>
+                    <a id="list-item" href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <button class="dropdown-button" id="list-item"><a href="#">Cadastro</a></button>
+                    <div class="dropdown-content">
+                        <a href="#">Cadastrar item</a>
+                        <a href="#">Editar item</a>
+                        <a href="#">Consultar item</a>
+                        <a href="#">Deletar item</a>
+                    </div>
+                </li>
+
+                <li>
+                    <button class="dropdown-button" id="list-item"><a href="#">Carrinho</a></button>
+                    <div class="dropdown-content">
+                        <a href="#">Adicionar item</a>
+                        <a href="#">Remover item</a>
+                        <a href="#">Alterar quantidade de um item</a>
+                        <a href="#">Visualizar carrinho</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a id="list-item" href="#">Gerar relatório</a>
+                </li>
+            </ul>
+        </div>
+        -->
     </body>
 </html>
