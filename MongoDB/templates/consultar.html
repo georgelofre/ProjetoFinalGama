@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualização</title>
+    <title>Consultar produto</title>
 </head>
 <body>
-    <form action="/atualizar" method="get">
+    <form action="/consultar" method="get">
         <label for="nome">Produtos</label>
         <select name="nome" id="nome">
             {%for produto in produtos%}
@@ -15,15 +15,9 @@
             {%endfor%}
         </select>
         <br>
-        <label for="preco">Preço: </label>
-        <input type="number" id="preco" name="preco" step="0.10" min="0" required>
-        <br>
-        <label for="descricao">Descrição: </label>
-        <input type="text" id="descricao" name="descricao" required>
-        <br>
-        <input type="submit" value="Atualizar">
+        <input type="submit" value="Consultar">
         <br>
         <button onclick="location.href='../static/index.html'" type="button">Voltar</button>
-    </form>    
+    </form>   
 </body>
 </html>

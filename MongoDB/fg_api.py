@@ -1,13 +1,14 @@
 from flask import Flask, request, redirect, url_for, render_template
 from pymongo import MongoClient
+import pandas as pd #Para a consulta
 
 app = Flask(__name__)
 
-conn = MongoClient(    #Conectar num db seu, Fernando, pois eu não tenho certeza sobre a minha senha... haha
-    # 'mongodb+srv://@cluster0.m52rote.mongodb.net/organicos',
-    # username='dellamaf',
-    # password='33762636'
-)
+# conn = MongoClient(    #Conectar num db seu, Fernando, pois eu não tenho certeza sobre a minha senha... haha
+#     'mongodb+srv://@cluster0.m52rote.mongodb.net/organicos',
+#     username='dellamaf',
+#     password='33762636'
+# )
 conn = MongoClient('mongodb+srv://ficastro:jornaldb132@cluster0.dyf7dpm.mongodb.net/test')
 db = conn['Organicos']
 
@@ -17,7 +18,7 @@ def home():
     return redirect(url_for('static', filename='index.html'))
 
 #Cadastramento de produtos
-@app.route('/cadastrar/', methods=['GET'])#?nome=tomate&preco=10
+@app.route('/cadastrar/', methods=['GET'])
 def cadastrar():
     produto = request.args.to_dict()
     print(produto)
@@ -25,48 +26,35 @@ def cadastrar():
         return redirect(url_for('static', filename='cadastrar.html'))
     else:
         query = db.produtos.find_one({'nome': produto['nome']})
-        if query: #Se o produto está no banco
-            return {'Produto já cadastrado!'}
-        else: #Se o produto não esta no banco
+        if query: #Se o produto já está no banco
+            return redirect(url_for('static', filename='ja_cadastrado.html'))
+        else: #Se o produto não está no banco
             db.produtos.insert_one(produto)
             del produto['_id']
-            return produto
+            return redirect(url_for('static', filename='cadastrado.html'))
 
-# # Read
-# @app.route('/consultar/')
-# def consultar():
-#     produto = request.args.to_dict()
-#     print(produto)
-#     if not produto:
-#         return redirect(url_for('static', filename='consultar.html'))
-#     else: #{'nome': 'tomate', 'preco':10}
-#         cursor = db.produtos.find({'nome': produto['nome']}, {'_id':False})
-#         produtos = list(cursor)
-#         return produtos
 
 #Consulta de produtos
 @app.route('/consultar/')
 def consultar():
     produto = request.args.to_dict()
-    print(produto)
     if not produto:
-        return redirect(url_for('static', filename='consultar.html'))
+        produtos = list(db.produtos.find())
+        print(produtos)
+        return render_template('consultar.html', produtos=produtos)
     else:
         produto = db.produtos.find_one({'nome': produto['nome']}, {'_id':False})
         print(produto)
-        if produto: #tomate está no banco
-            return produto
-        else: #tomate não está no banco
-            return {'error': 'Produto não encontrado!'}
+        if produto: #Se produto está no banco
+            prodNome = produto['nome'].capitalize()
+            prodPreco = float(produto['preco'])
+            prodDesc = produto['descricao'].capitalize()
+            return render_template('consultado.html',prodNome=prodNome,prodPreco=prodPreco,prodDesc=prodDesc)
 
 
 #Deletar produtos
 @app.route('/deletar/')
 def deletar_nome():
-    # produto = request.args.to_dict()
-    # if not produto:
-    #     return redirect(url_for('static', filename='deletar.html'))
-    # else:
     produto = request.args.to_dict()
     if not produto:
         produtos = list(db.produtos.find())
@@ -77,11 +65,9 @@ def deletar_nome():
         print(produto)
         if produto:
             db.produtos.delete_one({'nome': produto['nome']})
-            return {'message': 'Produto deletado com sucesso!'}
-        else:
-            return {'error': 'Produto não encontrado!'}
+            return redirect(url_for('static', filename='deletado.html'))
 
-
+#Atualizar preço e descrição
 @app.route('/atualizar/')
 def atualizar():
     produto = request.args.to_dict()
@@ -97,7 +83,7 @@ def atualizar():
                 'descricao': produto['descricao']}
             }
         )
-        return produto
+        return redirect(url_for('static', filename='atualizado.html'))
 
 
 if __name__ == '__main__':

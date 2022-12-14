@@ -7,13 +7,6 @@
     <title>Deleção</title>
 </head>
 <body>
-    <!--
-    <form action="/deletar" method="get">
-        <label for="nome">Produto: </label>
-        <input type="text" id="nome" name="nome" required>
-        <br>
-        <input type="submit" value="Deletar">
-    </form>-->
     <form action="/deletar" method="get">
         <label for="nome">Produtos</label>
         <select name="nome" id="nome">
@@ -23,6 +16,8 @@
         </select>
         <br>
         <input type="submit" value="Deletar">
+        <br>
+        <button onclick="location.href='../static/index.html'" type="button">Voltar</button>
     </form>   
 </body>
 </html>
