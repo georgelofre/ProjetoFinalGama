@@ -1,13 +1,26 @@
 from flask import Flask, render_template
-import mysql.connector
-from ProjetoFinalGama.relatorio.dadosbd.dadosbd import configbanco,configteste
+import mysql.connector as sql
+from ProjetoFinalGama.relatorio.dadosbd.dadosbd import configbanco, configteste, testando
 app = Flask(__name__)
 
+config = {'user': 'root',
+          'password': '1qazxsw2',
+          'host': 'localhost',
+          'database': 'new_relatorio'
+          }
+
+configteste = {'user': 'root',
+          'password': '1qazxsw2',
+          'host': 'localhost',
+          'database': 'teste_relatorio'
+          }
+
 def create_connection_database():
-    if app.config['TESTING']: #por padrão TESTING=False
-        return mysql.connector.connect(**configteste)
+    if testando == True:
+        return sql.connect(**config)
     else:
-        return mysql.connector.connect(**configbanco)
+        return sql.connect(**configteste)
+
 
 mydb = create_connection_database()
 teste = mydb.cursor()
@@ -18,9 +31,9 @@ def index_rel():
 
 @app.route('/index_relatorio/maisvendido', methods=['GET'])
 def maisvendido():
-    teste.execute("select produto from relatorio01 where quantidade = (select max(quantidade) from relatorio01);")
+    teste.execute("select produto, quantidade, valor from relatorio01 where quantidade = (select max(quantidade) from relatorio01);")
     maisvend = teste.fetchone()
-    return render_template('maisvendido.html', maisvendido=maisvend[0])
+    return render_template('maisvendido.html', maisvendido=maisvend)
 
 @app.route('/index_relatorio/osmaisvendidos', methods=['GET'])
 def osmaisvendidos():
@@ -38,6 +51,16 @@ def totalDeVendas():
     arrecadado = f'{float(arrec[0]):.2f}'.replace(".", ",")
     dados = [quantidade, arrecadado]
     return render_template('totalvendas.html', dados=dados)
+
+@app.route('/index_relatorio/rankprodutos', methods=['GET'])
+def rankprodutos():
+    teste.execute("select produto, quantidade from relatorio01 where quantidade > (select avg(quantidade) from relatorio01);")
+    osmaisvend = teste.fetchall()
+    return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
