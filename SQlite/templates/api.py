@@ -15,7 +15,6 @@ def fechar_conexao(conexao):
     conexao.close()
 
 # Comandos consulta de itens e alteração de quantidade
-
 select_todos = "SELECT * FROM nome_tabela;"
 select_id = "SELECT * FROM nome_tabela WHERE nome like ?"
 update = "UPDATE nome_tabela SET quantidade =:quantidade WHERE quantidade like :quantidade  "
@@ -36,7 +35,7 @@ def update_quantidade(quantidade):
     else:
         return {'error': 'mensagem de erro'}
 
-# consulta de itens
+# consulta de produtos 
 @app.route('/read')
 def read():
     conexao, cursor = abrir_conexao(banco)
