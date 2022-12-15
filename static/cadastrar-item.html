@@ -12,7 +12,7 @@
         <header>
             <div class="navbar">
                 <div class="logo">
-                    <img src="img/logo.png" alt="Sistema Orgânico">
+                    <a href="index.html"><img src="img/logo.png" alt="Sistema Orgânico"></a>
                 </div>
             </div>   
         </header>
@@ -22,11 +22,11 @@
                 <h1>Cadastrar item</h1>
             </div>
         
-            <div class="grid">
-                <div class="box">
+            <div class="grid-form">
+                <div class="box-form">
                     <div class="form">
                         <header class="form">
-                          <h2>Cadastro</h2>
+                          <h2>Dados</h2>
                         </header>
                       
                         <form action="https://httpbin.org/post" class="form" method="POST">                  
@@ -39,8 +39,8 @@
                             <label class="label" for="fname">Preço:</label><br>
                             <input type="text" id="fname" name="fname"><br>
                       
-                            <label class="label" for="fname">Nome do item:</label><br>
-                            <input type="text" id="fname" name="fname"><br>
+                            <label class="label" for="fname">Descrição:</label><br>
+                            <input type="textarea" rows="4" cols="50" id="fname" name="fname"><br>
 
                             <div>
                                 <button class="form-button" type="submit">Cadastrar</button>
@@ -49,14 +49,27 @@
                     </div>
                 </div>
 
-                <div class="lista">
+                <div class="tabela">
                     <h3>Produtos cadastrados:</h3>
-
-                    <ul>
-                        <li class="lista-produtos">
-                            Produto, ID, Preço
-                        </li>
-                    </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>ID</th>
+                                <th>Preço</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                <td>Nome</td>
+                                <td>ID</td>
+                                <td>Preço</td>
+                                <td>Descrição</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>

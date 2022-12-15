@@ -90,6 +90,37 @@ h1 {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+.grid-form {
+    display: flex;
+}
+
+.box-form {
+    width: 20%;
+    height: 300px;
+    margin: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 2%;
+    background-color: #D9D9D9;
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-bottom: 50px;
+}
+
+.box-title {
+    object-fit: cover;
+    width: auto;
+    height: fit-content;
+    margin-top: -10px;
+}
+
+.box-form h2 {
+    text-align: center;
+    color: #1C8B48;
+}
+
 /** Preenchimento de formulários **/
 
 .label {
@@ -115,12 +146,34 @@ form button {
     padding-bottom: 10px;
 }
 
-.lista h3 {
+/** Tabela de itens **/
+
+.tabela {
+    margin-left: 50px;
+}
+
+.tabela h3 {
     color: #1C8B48;
 }
 
-.lista-produtos {
-    list-style-type: none;
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+}
+
+.tabela th {
+    color: #1C8B48;
+    border-bottom: 1px solid black;
+    padding: 12px 15px;
+}
+
+.tabela td {
+    padding: 12px 15px;
+    text-align: center; 
 }
 
 /*** Footer ***/
