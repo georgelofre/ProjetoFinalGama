@@ -38,7 +38,7 @@ fechar_conn(conexao)
 #api
 @app.get('/') # teste de rota
 def home(): 
-    return "teste", 200
+    return "Organico's", 200
 
 #adicionando produtos
 @app.route('/adiciona', methods=['POST'])
@@ -62,7 +62,7 @@ def deletar_produto_carrinho(nome):
         fechar_conn(conexao)
         return {"mensagem": f'{resultado} produto(s) removido(s)'}, 200
     else:
-        return {"mensagem": "Produto não encontrado"}, 200
+        return {"erro": "Produto não encontrado"}, 200
 
 @app.route('/deleta_tudo', methods=['DELETE'])
 def deletar_tudo_carrinho():
@@ -100,8 +100,11 @@ def update_quantidade(quantidade):
 def consultar_nome_carrinho(nome):
     conexao, cursor = abrir_conn(banco)
     resultado = cursor.execute(consultar_nome, [nome]).fetchall()
-    fechar_conn(conexao)
-    return resultado, 200
+    if resultado:
+        fechar_conn(conexao)
+        return resultado, 200
+    else:
+        return {"erro":"Produto não registrado"}
 
 if __name__ == '__main__':
     app.run(debug=True)
