@@ -11,7 +11,6 @@ def test_cadastrar(client):
     assert resultado.request.path == '/cadastrado.html'
     #assert resultado.json == {'nome: teste', 'preco: 2', 'descricao: descriteste'}
 
-
 def test_cadastrar_status(client):
     resultado = client.get('/cadastrar')
     assert resultado.status_code == 302
