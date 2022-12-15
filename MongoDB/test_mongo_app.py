@@ -6,33 +6,41 @@ def client():
     return app.test_client()
 
 def test_cadastrar(client):
-    resultado = client.get('/cadastrar/?nome=teste&preco=2&descricao=descriteste')
-    assert resultado.json == {'nome: teste', 'preco: 2', 'descricao: descriteste'}
+    resultado = client.get('/cadastrar')
+    assert len (resultado.history) == 1
+    assert resultado.request.path == '/cadastrado'
+    #assert resultado.json == {'nome: teste', 'preco: 2', 'descricao: descriteste'}
 
 def test_cadastrar_status(client):
-    resultado = client.get('/cadastrar/?nome=teste&preco=2&descricao=descriteste')
-    assert resultado.status_code == 200
+    resultado = client.get('/cadastrar')
+    assert resultado.status_code == 302
+
+'''Não entendi direito como dá pra fazer este...
 
 def test_consultar(client):
-    resultado = client.get('/consultar/')
+    resultado = client.get('/consultar/teste')
     assert resultado.json == {'nome: teste', 'preco: 2', 'descricao: descriteste'}
 
 def test_consultar_status(client):
-    resultado = client.get('/consultar/')
+    resultado = client.get('/consultar/teste')
     assert resultado.status_code == 200
-
-def test_deletar(client):
-    resultado = client.get()
-    assert resultado.json == {}
-
-def test_deletar_status(client):
-    resultado = client.get()
-    assert resultado.status_code == 200
+'''
 
 def test_atualizar(client):
-    resultado = client.get()
-    assert resultado.json == {}
+    resultado = client.get('/atualizar')
+    assert len (resultado.history) == 1
+    assert resultado.request.path == '/atualizado'
+    #assert resultado.json == {'nome: teste', 'preco: 3', 'descricao: outradescriteste'}
 
 def test_atualizar_status(client):
-    resultado = client.get()
-    assert resultado.status_code == 200
+    resultado = client.get('/atualizar')
+    assert resultado.status_code == 320
+
+def test_deletar(client):
+    resultado = client.get('/deletar')
+    assert len (resultado.history) == 1
+    assert resultado.request.path == '/deletado'
+
+def test_deletar_status(client):
+    resultado = client.get('/deletar')
+    assert resultado.status_code == 320
