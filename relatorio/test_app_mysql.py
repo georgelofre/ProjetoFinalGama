@@ -1,7 +1,5 @@
 import pytest
-from ProjetoFinalGama.relatorio.app_mysql import app, create_connection_database
-
-testanto = True
+from ProjetoFinalGama.relatorio.app_mysql import app
 
 trunc = '''
 Truncate Table relatorio01;
@@ -17,7 +15,9 @@ INSERT INTO `relatorioteste` (`id`, `produto`, `quantidade`, `valor`) VALUES ('4
 
 @pytest.fixture()
 def client():
-    return app.test_client()
+    testing_client = app.test_client()
+    return testing_client
+
 
 
 def test_index_rel_response(client):
@@ -32,13 +32,16 @@ def test_maisvendido_response(client):
 def test_osmaisvendidos(client):
     resposta = client.get("http://127.0.0.1:5000/index_relatorio/osmaisvendidos")
     assert resposta.status_code == 200
-    assert 'Uva' in resposta.text
+    banco_teste_01 = 'Produto: Pessego, quantidade: 10 e valor: R$ 15.20'
+    banco_teste_02 = 'Produto: Limao, quantidade: 17 e valor: R$ 23.60'
+    assert banco_teste_01, banco_teste_02 in resposta.text
 
 def test_totalDeVendas(client):
     resposta = client.get("http://127.0.0.1:5000/index_relatorio/totaldevendas")
+    print(resposta.text)
     assert resposta.status_code == 200
-    assert '38' in resposta.text
-    assert '63,35' in resposta.text
+    banco_teste_03 = 'Foram vendidos 41 produtos, resultando no valor arrecadado de R$ '
+    assert banco_teste_03 in resposta.text
 
 
 

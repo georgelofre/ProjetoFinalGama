@@ -22,12 +22,12 @@ body {
 }
 
 .logo {
-    display: flex;
+    display:block;
     margin: auto;
     padding-right: 50px;
 }
 
-/** Main **/
+/** Home main **/
 
 .title {
     width: 100%;
@@ -36,7 +36,6 @@ body {
 }
 
 h1 {
-    width: 100%;
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
@@ -49,7 +48,7 @@ h1 {
 
 .box {
     width: 30%;
-    height: 300px;
+    height: fit-content;
     margin: 50px;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -59,7 +58,6 @@ h1 {
     column-gap: 5px;
     row-gap: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding-bottom: 50px;
 }
 
 .box-title {
@@ -91,88 +89,91 @@ h1 {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-/*
-*** Menu slider***
-#slider {
-    list-style-type: none;
-    width: fit-content;
-    height: calc(100vh - 130px);
-    position: relative;
-    bottom: auto;
-    right: auto;
-    z-index: 1;
+.grid-form {
+    display: flex;
+}
+
+.box-form {
+    width: 20%;
+    height: 300px;
+    margin: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 2%;
     background-color: #D9D9D9;
-    overflow-x: hidden;
-    transition: all 0.5s ease;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    box-shadow: 5px 0px 5px gray;
-    margin: 0px;
-}
-
-#list-item { *** Item ***
-    text-decoration: none;
-    margin-left: 8px;
-    margin-right: 50px;
-    margin-bottom: 15px;
-    font-size: 18 px;
-    font-weight: bold;
-    color: #1C8B48;
-    display: block;
-    cursor: pointer;
-}
-
-.dropdown-button {
-    padding: 0px;
-    border: none;
-    outline: none;
-    font-size: inherit;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 10px;
-}
-
-.dropdown-button a {
-    text-decoration: none;
-    color: #1C8B48;
-}
-
-.dropdown-button::after {
-    padding-left: 25px;
-    content: '▸';
-}
-
-* Counteúdo escondido do dropdown *
-.dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 160px;
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 2;
-  }
-
-* Mostrar menu dropdown durante hover *
-.dropdown-button:hover .dropdown-content {
-    display: block;
+    padding-bottom: 50px;
 }
 
-.dropdown-content a { *** Sub-item ***
-    padding: 5px 50px 5px 50px;
-    text-decoration: none;
-    font-size: 16px;
+.box-title {
+    object-fit: cover;
+    width: auto;
+    height: fit-content;
+    margin-top: -10px;
+}
+
+.box-form h2 {
+    text-align: center;
     color: #1C8B48;
-    display: block;
-    border: none;
-    background: none;
-    width:100%;
-    text-align: left;
-    cursor: pointer;
 }
 
-#dropdown-button text:hover, #slider a:hover {
-    color: black;
+/** Preenchimento de formulários **/
+
+.label {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1C8B48;
 }
-*/
+
+#fname {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+form button {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    padding: 15px 10px;
+    background-color: #1C8B48;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+/** Tabela de itens **/
+
+.tabela {
+    margin-left: 50px;
+}
+
+.tabela h3 {
+    color: #1C8B48;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+}
+
+.tabela th {
+    color: #1C8B48;
+    border-bottom: 1px solid black;
+    padding: 12px 15px;
+}
+
+.tabela td {
+    padding: 12px 15px;
+    text-align: center; 
+}
 
 /*** Footer ***/
 .footer p {
@@ -189,11 +190,11 @@ h1 {
 
 .documento {
     position: relative;
-    padding-top: 30px;
+    margin-top: 30px;
     margin-bottom: 50px;
     margin-left: 200px;
     margin-right: 200px;
-    padding-bottom: 80px;
+    padding-bottom: 30px;
     background-color: white;
     box-shadow: 10px 10px 5px gray;
 }
@@ -214,11 +215,11 @@ h1 {
 }
 
 .relatorio {
-    margin: 80px;
+    margin: 50px 80px;
 }
 
 .documento h3 {
-    margin-top: 40px;
+    margin-top: 30px;
     font-weight: 700;
     font-size: 20px;
 }
