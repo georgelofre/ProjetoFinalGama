@@ -7,8 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        O rank dos produtos vendidos é:
+    </div>
     <div id="resultado">
-        Foram vendidos {{ quantidade[0] }} produtos, resultando no valor arrecadado de R$ {{ arrecadado[0] }}.
+        {{ osmaisvendidos }}
     </div>
     <button>
         <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
