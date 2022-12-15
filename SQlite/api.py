@@ -2,47 +2,88 @@ from flask import Flask, redirect, url_for, request, render_template
 import sqlite3 as sql
 
 app = Flask(__name__)
-banco = 'organicos.bd'
+banco = 'carrinho.db'
 
-# Função
-def abrir_conexao(banco):
-    conexao = sql.connect(banco)
-    cursor = conexao.cursor()
-    return conexao, cursor
+#funções (conexão com o banco)
+def abrir_conn(banco):
+    conn = sql.connect(banco)
+    cursor = conn.cursor()
+    return conn, cursor
 
-def fechar_conexao(conexao):
-    conexao.commit()
-    conexao.close()
+def fechar_conn(conn):
+    conn.commit()
+    conn.close()
 
-# Comandos consulta de itens e alteração de quantidade
-select_todos = "SELECT * FROM nome_tabela;"
-select_id = "SELECT * FROM nome_tabela WHERE nome like ?"
-update = "UPDATE nome_tabela SET quantidade =:quantidade WHERE quantidade like :quantidade  "
+#comandos 
+#criar tabela
 
-# alterar quantidade
-@app.route('/update/<quantidade>')
-def update_quantidade(quantidade):
-    consulta = read(quantidade)
-    if consulta: 
-        id=request.args.to_dict() 
-        if id: 
-            conexao, cursor = abrir_conexao(banco)
-            cursor.execute(update, quantidade)
-            fechar_conexao(conexao)
-            return id
-        else: 
-            return render_template('alterar_quantidade.html', nome_tabela=consulta[0])
+tabela_carrinho = """CREATE TABLE  IF NOT EXISTS tabela_carrinho(
+    id INT AUTO_INCREMENT, 
+    nome TEXT,
+    quantidade INT,
+    preco FLOAT
+);"""
+inserir_prod = "INSERT INTO tabela_carrinho VALUES (null, :nome, :quantidade, :preco);"
+deletar_prod = "DELETE FROM tabela_carrinho WHERE nome = ?;"
+deletar_tudo = "DELETE FROM tabela_carrinho;"
+consultar_tudo = "SELECT * FROM tabela_carrinho;"
+consultar_nome = "SELECT * FROM tabela_carrinho WHERE nome = ?;"
+
+#criando tabela
+conexao, cursor = abrir_conn(banco)
+cursor.execute(tabela_carrinho)
+fechar_conn(conexao)
+
+#api
+@app.get('/') # teste de rota
+def home(): 
+    return "teste", 200
+
+#Adicionando produtos
+@app.route('/adiciona', methods=['POST'])
+def adicionar_produto_carrinho():
+    produto = request.json
+    if produto:
+        conexao, cursor = abrir_conn(banco)
+        #print(type(conexao), type(cursor))
+        cursor.execute(inserir_prod, produto)
+        fechar_conn(conexao)
+        return {"mensagem":"produto adicionado com sucesso"}, 201
     else:
-        return {'error': 'mensagem de erro'}
+        return {"erro": "Esperava receber uma solicitação"} , 400
 
-# consulta de produtos 
-@app.route('/read')
-def read():
-    conexao, cursor = abrir_conexao(banco)
-    resultado = cursor.execute(select_todos).fetchall()
-    fechar_conexao(conexao)
-    return resultado        
+#Deletando produtos
+@app.route('/deleta/<nome>', methods=['DELETE'])
+def deletar_produto_carrinho(nome):
+    conexao, cursor = abrir_conn(banco)
+    resultado = cursor.execute(deletar_prod, [nome]).rowcount
+    if resultado:
+        fechar_conn(conexao)
+        return {"mensagem": f'{resultado} produto(s) removido(s)'}, 200
+    else:
+        return {"mensagem": "Produto não encontrado"}, 200
 
+@app.route('/deleta_tudo', methods=['DELETE'])
+def deletar_tudo_carrinho():
+    conexao, cursor = abrir_conn(banco)
+    resultado = cursor.execute(deletar_tudo).rowcount
+    fechar_conn(conexao)
+    return {"mensagem":"Todos os produtos foram removidos"}
 
-if __name__ == "__main__":
-    app.run(debug=True)    
+#Consultando produtos
+@app.route('/consulta_tudo', methods=['GET'])
+def consultar_tudo_carrinho():
+    conexao, cursor = abrir_conn(banco)
+    resultado = cursor.execute(consultar_tudo).fetchall()
+    fechar_conn(conexao)
+    return resultado, 200
+
+@app.route('/consulta/<nome>', methods=['GET'])
+def consultar_nome_carrinho(nome):
+    conexao, cursor = abrir_conn(banco)
+    resultado = cursor.execute(consultar_nome, [nome]).fetchall()
+    fechar_conn(conexao)
+    return resultado, 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
