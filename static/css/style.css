@@ -22,12 +22,12 @@ body {
 }
 
 .logo {
-    display: flex;
+    display:block;
     margin: auto;
     padding-right: 50px;
 }
 
-/** Main **/
+/** Home main **/
 
 .title {
     width: 100%;
@@ -36,7 +36,6 @@ body {
 }
 
 h1 {
-    width: 100%;
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
@@ -91,88 +90,38 @@ h1 {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-/*
-*** Menu slider***
-#slider {
-    list-style-type: none;
-    width: fit-content;
-    height: calc(100vh - 130px);
-    position: relative;
-    bottom: auto;
-    right: auto;
-    z-index: 1;
-    background-color: #D9D9D9;
-    overflow-x: hidden;
-    transition: all 0.5s ease;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    box-shadow: 5px 0px 5px gray;
-    margin: 0px;
-}
+/** Preenchimento de formulários **/
 
-#list-item { *** Item ***
-    text-decoration: none;
-    margin-left: 8px;
-    margin-right: 50px;
-    margin-bottom: 15px;
-    font-size: 18 px;
-    font-weight: bold;
-    color: #1C8B48;
-    display: block;
-    cursor: pointer;
-}
-
-.dropdown-button {
-    padding: 0px;
-    border: none;
-    outline: none;
-    font-size: inherit;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 10px;
-}
-
-.dropdown-button a {
-    text-decoration: none;
-    color: #1C8B48;
-}
-
-.dropdown-button::after {
-    padding-left: 25px;
-    content: '▸';
-}
-
-* Counteúdo escondido do dropdown *
-.dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 2;
-  }
-
-* Mostrar menu dropdown durante hover *
-.dropdown-button:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a { *** Sub-item ***
-    padding: 5px 50px 5px 50px;
-    text-decoration: none;
+.label {
     font-size: 16px;
+    font-weight: 800;
     color: #1C8B48;
-    display: block;
-    border: none;
-    background: none;
-    width:100%;
-    text-align: left;
-    cursor: pointer;
 }
 
-#dropdown-button text:hover, #slider a:hover {
-    color: black;
+#fname {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
 }
-*/
+
+form button {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    padding: 15px 10px;
+    background-color: #1C8B48;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.lista h3 {
+    color: #1C8B48;
+}
+
+.lista-produtos {
+    list-style-type: none;
+}
 
 /*** Footer ***/
 .footer p {
