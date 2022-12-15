@@ -10,8 +10,11 @@
     <div>
         Os produtos mais vendidos foram:
     </div>
-    <div>
-        {{ osmaisvendidos }}
+    <div id="resultado">
+        {% for item in osmaisvendidos %}
+        Produto: {{ item[0] }}, quantidade: {{ item[1] }} e valor: R$ {{ item[2] }}
+        <br>
+        {% endfor %}
     </div>
     <button>
         <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
