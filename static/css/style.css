@@ -48,7 +48,7 @@ h1 {
 
 .box {
     width: 30%;
-    height: 300px;
+    height: fit-content;
     margin: 50px;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -58,7 +58,6 @@ h1 {
     column-gap: 5px;
     row-gap: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding-bottom: 50px;
 }
 
 .box-title {
@@ -191,11 +190,11 @@ table {
 
 .documento {
     position: relative;
-    padding-top: 30px;
+    margin-top: 30px;
     margin-bottom: 50px;
     margin-left: 200px;
     margin-right: 200px;
-    padding-bottom: 80px;
+    padding-bottom: 30px;
     background-color: white;
     box-shadow: 10px 10px 5px gray;
 }
@@ -216,11 +215,11 @@ table {
 }
 
 .relatorio {
-    margin: 80px;
+    margin: 50px 80px;
 }
 
 .documento h3 {
-    margin-top: 40px;
+    margin-top: 30px;
     font-weight: 700;
     font-size: 20px;
 }
