@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang pt-br>
+    <head>
+        <meta charset="utf-8">
+        <title>Sistema Orgânico - Cadastrar item</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/script.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="Sistema Orgânico"></a>
+                </div>
+            </div>   
+        </header>
+
+        <main>
+            <div class="title">
+                <h1>Cadastrar item</h1>
+            </div>
+        
+            <div class="grid-form">
+                <div class="box-form">
+                    <div class="form">
+                        <header class="form">
+                          <h2>Dados</h2>
+                        </header>
+                      
+                        <form action="https://httpbin.org/post" class="form" method="POST">                  
+                            <label class="label" for="fname">Nome do item:</label><br>
+                            <input type="text" id="fname" name="fname"><br>
+
+                            <label class="label" for="fname">ID:</label><br>
+                            <input type="text" id="fname" name="fname"><br>
+
+                            <label class="label" for="fname">Preço:</label><br>
+                            <input type="text" id="fname" name="fname"><br>
+                      
+                            <label class="label" for="fname">Descrição:</label><br>
+                            <input type="textarea" rows="4" cols="50" id="fname" name="fname"><br>
+
+                            <div>
+                                <button class="form-button" type="submit">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="tabela">
+                    <h3>Produtos cadastrados:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>ID</th>
+                                <th>Preço</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                <td>Nome</td>
+                                <td>ID</td>
+                                <td>Preço</td>
+                                <td>Descrição</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
+        </footer>
+    </body>
+</html>

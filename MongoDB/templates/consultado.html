@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta: {{ prodNome }}</title>
+</head>
+<body>
+    <div class="consulta">
+        
+        <table class="consulta">
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td>{{ prodNome }}</td>
+                <td>R$ {{ prodPreco }}</td>
+                <td>{{ prodDesc }}</td>
+            </tr>
+        </table>
+        </div>
+        <button onclick="location.href='../static/index.html'" type="button">Voltar</button>
+    
+</body>
+</html>

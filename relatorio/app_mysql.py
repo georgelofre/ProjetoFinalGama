@@ -1,8 +1,10 @@
 from flask import Flask, render_template
 import mysql.connector as sql
+
 from ProjetoFinalGama.relatorio.dadosbd.dadosbd import config, configteste
 
 app = Flask(__name__)
+
 
 def create_connection_database():
     if app.config['TESTING']:
@@ -44,6 +46,26 @@ def totalDeVendas():
     mydb.close()
     return render_template('totalvendas.html', quantidade=quantidade,
                            arrecadado=arrecadado)
+
+
+@app.route('/index_relatorio/rankprodutos', methods=['GET'])
+def rankprodutos():
+    teste.execute("select produto, quantidade from relatorio01 where quantidade > (select avg(quantidade) from relatorio01);")
+    osmaisvend = teste.fetchall()
+    return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
+
+@app.route('/index_relatorio/limpar', methods=['GET'])
+def limpar():
+    teste.execute("delete from relatorio01 ")
+    mydb.commit()
+    return render_template('osmaisvendidos.html')
+
+@app.route('/index_relatorio/consultar', methods=['GET'])
+def consultar():
+    teste.execute("select produto, quantidade from relatorio01;")
+    osmaisvend = teste.fetchall()
+    return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
+
 
 
 if __name__ == '__main__':

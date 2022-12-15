@@ -1,1 +1,6 @@
 /relatorio/dadosbd/dadosbd.py
+.venv
+*.ps1
+__pycache__
+*.pyc
+todo.md
