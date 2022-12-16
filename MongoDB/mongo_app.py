@@ -20,11 +20,6 @@ import pandas as pd #Para a consulta
 
 app = Flask(__name__)
 
-# conn = MongoClient(    #Conectar num db seu, Fernando, pois eu não tenho certeza sobre a minha senha... haha
-#     'mongodb+srv://@cluster0.m52rote.mongodb.net/organicos',
-#     username='dellamaf',
-#     password='33762636'
-# )
 conn = MongoClient('mongodb+srv://ficastro:jornaldb132@cluster0.dyf7dpm.mongodb.net/test')
 db = conn['Organicos']
 
@@ -67,7 +62,7 @@ def consultar():
             prodDesc = produto['descricao'].capitalize()
             return render_template('consultado.html',prodNome=prodNome,prodPreco=prodPreco,prodDesc=prodDesc)
 
-
+    
 #Deletar produtos
 @app.route('/deletar/')
 def deletar_nome():

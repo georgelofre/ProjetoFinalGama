@@ -22,43 +22,158 @@ body {
 }
 
 .logo {
-    display: flex;
+    display:block;
     margin: auto;
     padding-right: 50px;
 }
 
-/*** Menu slider***/
-#slider {
-    width:fit-content;
-    height: 100vh;
-    position: relative;
-    bottom: auto;
-    right: auto;
-    z-index: 10;
-    background-color: #D9D9D9;
-    overflow-x: hidden;
-    transition: all 0.5s ease;
-    padding-top: 20px;
-    padding-bottom: 20px;
+/** Home main **/
+
+.title {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
 }
 
-#slider dt { /*** Item ***/
-    margin-left: 50px;
-    margin-right: 50px;
-    font-size: 18 px;
-    font-weight: bold;
+h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
     color: #1C8B48;
-    display: block;
 }
 
-#slider a { /*** Sub-item ***/
-    text-decoration: none;
-    margin-left: 50px;
-    margin-right: 50px;
+.grid {
+    display: flex;
+}
+
+.box {
+    width: 30%;
+    height: 300px;
+    margin: 50px;
     margin-top: 10px;
-    font-size: 16 px;
+    margin-bottom: 20px;
+    padding: 2%;
+    background-color: #D9D9D9;
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-bottom: 50px;
+}
+
+.box-title {
+    object-fit: cover;
+    width: auto;
+    height: fit-content;
+    margin-top: -10px;
+}
+
+.box h2 {
+    text-align: center;
     color: #1C8B48;
+}
+
+.box a {
     display: block;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 1em;
+    transition: .3s;
+    padding: 1em;
+    background-color: rgb(235, 235, 235);
+    color: #1C8B48;
+    text-decoration: none;
+}
+
+.box a:hover{
+    cursor:pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.grid-form {
+    display: flex;
+}
+
+.box-form {
+    width: 20%;
+    height: 300px;
+    margin: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 2%;
+    background-color: #D9D9D9;
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-bottom: 50px;
+}
+
+.box-title {
+    object-fit: cover;
+    width: auto;
+    height: fit-content;
+    margin-top: -10px;
+}
+
+.box-form h2 {
+    text-align: center;
+    color: #1C8B48;
+}
+
+/** Preenchimento de formulários **/
+
+.label {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1C8B48;
+}
+
+#fname {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+form button {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    padding: 15px 10px;
+    background-color: #1C8B48;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+/** Tabela de itens **/
+
+.tabela {
+    margin-left: 50px;
+}
+
+.tabela h3 {
+    color: #1C8B48;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+}
+
+.tabela th {
+    color: #1C8B48;
+    border-bottom: 1px solid black;
+    padding: 12px 15px;
+}
+
+.tabela td {
+    padding: 12px 15px;
+    text-align: center; 
 }
 
 /*** Footer ***/
@@ -66,7 +181,8 @@ body {
     position: absolute;
     width: 100%;
     font-size: 16px;
-    margin-top: 5em;
+    margin-top: 50px;
+    padding-bottom: 50px;
     text-align: center;
     color: #1C8B48;
 }
@@ -75,7 +191,7 @@ body {
 
 .documento {
     position: relative;
-    margin-top: 50px;
+    padding-top: 30px;
     margin-bottom: 50px;
     margin-left: 200px;
     margin-right: 200px;
