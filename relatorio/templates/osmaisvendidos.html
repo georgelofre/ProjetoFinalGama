@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        Os produtos mais vendidos foram:
-    </div>
-    <div id="resultado">
-        {% for item in osmaisvendidos %}
-        Produto: {{ item[0] }}, quantidade: {{ item[1] }} e valor: R$ {{ item[2] }}
-        <br>
-        {% endfor %}
-    </div>
-    <button>
-        <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
-    </button>
-</body>
+<html lang pt-br>
+    <head class="relatorio">
+        <meta charset="utf-8">
+        <title>Sistema Orgânico - Produtos mais vendido</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+            body {
+              background-image: url("../../static/img/bg.png");
+              background-size: 100%;
+              background-repeat: repeat-y;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="documento">
+            <div class="docHeader">
+                <h1>Produtos mais vendidos</h1>
+            </div>
+            
+            <div id="relatorio">
+                <p>{% for item in osmaisvendidos %}</p>
+                <p>Produto: {{ item[0] }}, quantidade: {{ item[1] }} e valor: R$ {{ item[2] }}</p>
+                <br>
+                <p>{% endfor %}</p>
+            </div>
+
+            <button>
+                <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
+            </button>
+        </div>
+    </body>
 </html>
