@@ -44,33 +44,37 @@ def create_app(configdados):
         return render_template('totalvendas.html', quantidade=quantidade,
                                arrecadado=arrecadado)
 
-
     @app.route('/index_relatorio/rankprodutos', methods=['GET'])
-    def rankprodutos():
+    def rank_de_produtos():
         mydb = create_connection_database()
         mycursor = mydb.cursor()
-        mycursor.execute("select produto, quantidade from relatorio01 where quantidade > (select avg(quantidade) from relatorio01);")
-        osmaisvend = mycursor.fetchall()
-        return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
+        mycursor.execute("select produto, quantidade, valor from relatorio01 order by quantidade ASC;")
+        rank = mycursor.fetchall()
+        mydb.close()
+        return render_template('rankprodutos.html', rank=rank, len=len(rank))
 
-    @app.route('/index_relatorio/limpar', methods=['GET'])
-    def limpar():
+    @app.route('/index_relatorio/limpartabela', methods=['GET'])
+    def limpar_tabela():
         mydb = create_connection_database()
         mycursor = mydb.cursor()
-        mycursor.execute("delete from relatorio01 ")
+        mycursor.execute("TRUNCATE TABLE relatorio01;")
         mydb.commit()
-        return render_template('osmaisvendidos.html')
+        mydb.close()
+        return render_template('limpartabela.html')
 
     @app.route('/index_relatorio/consultar', methods=['GET'])
-    def consultar():
+    def consultar_vendas():
         mydb = create_connection_database()
         mycursor = mydb.cursor()
-        mycursor.execute("select produto, quantidade from relatorio01;")
-        osmaisvend = mycursor.fetchall()
-        return render_template('osmaisvendidos.html', osmaisvendidos=osmaisvend)
-
-
-
+        mycursor.execute("select produto from relatorio01;")
+        produtos = mycursor.fetchall()
+        mycursor.execute("select avg(quantidade) from relatorio01;")
+        quantidademedia = mycursor.fetchone()
+        mycursor.execute("select avg(valor) from relatorio01;")
+        valormedio = mycursor.fetchone()
+        mycursor.close()
+        mydb.close()
+        return render_template('consultarvendas.html', produtos=produtos, qtdmedia=quantidademedia, valmedio=valormedio)
 
     return app
 
