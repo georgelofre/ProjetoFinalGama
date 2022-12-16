@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        O rank dos produtos vendidos é:
-    </div>
-    <div id="resultado">
-        {{ osmaisvendidos }}
-    </div>
-    <button>
-        <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
-    </button>
-</body>
+<html lang pt-br>
+    <head class="relatorio">
+        <meta charset="utf-8">
+        <title>Ranking</title>
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+            body {
+              background-image: url("../../static/img/bg.png");
+              background-size: 100%;
+              background-repeat: repeat-y;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="documento">
+            <div class="docHeader">
+                <h1>Ranking</h1>
+            </div>
+            
+            <div id="relatorio">
+                <h3>O ranking dos produtos mais vendidos é:</h3>
+                <p>{{ osmaisvendidos }}</p>
+            </div>
+
+            <button>
+                <a href="{{ url_for('index_rel') }}"> Voltar ao início </a>
+            </button>
+        </div>
+    </body>
 </html>
