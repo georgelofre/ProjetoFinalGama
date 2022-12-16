@@ -1,5 +1,8 @@
 import pytest
-from ProjetoFinalGama.relatorio.app_mysql import app
+from ProjetoFinalGama.relatorio.app_mysql import create_app
+import requests
+from ProjetoFinalGama.relatorio.dadosbd.dadosdb import configteste
+
 
 trunc = '''
 Truncate Table relatorio01;
@@ -13,35 +16,34 @@ INSERT INTO `relatorioteste` (`id`, `produto`, `quantidade`, `valor`) VALUES ('3
 INSERT INTO `relatorioteste` (`id`, `produto`, `quantidade`, `valor`) VALUES ('4', 'Tomate', '17', '23.60');
 '''
 
-@pytest.fixture()
+
+@pytest.fixture
 def client():
-    testing_client = app.test_client()
-    return testing_client
-
-
+    app = create_app(configdados=configteste)
+    return app
 
 def test_index_rel_response(client):
-    resposta = client.get("http://127.0.0.1:5000/index_relatorio")
+    resposta = requests.get("http://127.0.0.1:5000/index_relatorio")
+    print(resposta.text)
     assert resposta.status_code == 200
 
 def test_maisvendido_response(client):
-    resposta = client.get("http://127.0.0.1:5000/index_relatorio/maisvendido")
-    assert resposta.status_code == 200
-    assert 'Tomate' in resposta.text
-
-def test_osmaisvendidos(client):
-    resposta = client.get("http://127.0.0.1:5000/index_relatorio/osmaisvendidos")
-    assert resposta.status_code == 200
-    banco_teste_01 = 'Produto: Pessego, quantidade: 10 e valor: R$ 15.20'
-    banco_teste_02 = 'Produto: Limao, quantidade: 17 e valor: R$ 23.60'
-    assert banco_teste_01, banco_teste_02 in resposta.text
-
-def test_totalDeVendas(client):
-    resposta = client.get("http://127.0.0.1:5000/index_relatorio/totaldevendas")
+    resposta = requests.get("http://127.0.0.1:5000/index_relatorio/maisvendido")
     print(resposta.text)
     assert resposta.status_code == 200
-    banco_teste_03 = 'Foram vendidos 41 produtos, resultando no valor arrecadado de R$ '
-    assert banco_teste_03 in resposta.text
+    assert 'Limao' in resposta.text
+
+def test_osmaisvendidos(client):
+    resposta = requests.get("http://127.0.0.1:5000/index_relatorio/osmaisvendidos")
+    assert resposta.status_code == 200
+    assert 'Produto: Pessego, quantidade: 11 e valor: R$ 15.00' in resposta.text
+    assert 'Produto: Limao, quantidade: 19 e valor: R$ 23.00' in resposta.text
+
+def test_totalDeVendas(client):
+    resposta = requests.get("http://127.0.0.1:5000/index_relatorio/totaldevendas")
+    print(resposta.text)
+    assert resposta.status_code == 200
+    assert 'Foram vendidos 41 produtos, resultando no valor arrecadado de R$ ' in resposta.text
 
 
 
