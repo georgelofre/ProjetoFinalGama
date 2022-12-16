@@ -21,7 +21,9 @@
             
             <div id="relatorio">
                 <h3>O ranking dos produtos mais vendidos é:</h3>
-                <p>{{ osmaisvendidos }}</p>
+                <p>{% for item in range(0,len) %}</p>
+                <p>{{ item }} - Produto: {{ rank[item][0] }}, quantidade: {{ rank[item][1] }} e valor: R$ {{ rank[item][2] }} </p>
+                <p>{% endfor %}</p>
             </div>
 
             <button>
