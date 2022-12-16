@@ -1,19 +1,3 @@
-'''Não está funcionando esse back!!!!
-
-
-Fiz o front e quando renderizo no VSCode dá certo, mas quando rodo o app.py não pega o Front. Esqueci provavelmente algum caminho errado no Front."
-
-!!!!!!!!!
-'''
-
-
-
-
-
-
-
-
-
 from flask import Flask, request, redirect, url_for, render_template
 from pymongo import MongoClient
 import pandas as pd #Para a consulta
