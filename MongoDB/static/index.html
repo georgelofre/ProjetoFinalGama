@@ -5,14 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início</title>
+
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <script src="../../static/js/script.js"></script>
+
+    <style>
+        body {
+          background-image: url("../../static/img/bg.png");
+          background-size: 100%;
+          background-repeat: repeat-y;
+        }
+    </style>
 </head>
+
 <body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="../../static/img/logo.png" alt="Sistema Orgânico"></a>
+            </div>
+        </div>   
+    </header>
+    
+
     <h1>Bem Vindo à API de Produtos da Organico's no MongoDB</h1>
-    <ul>
+    <!--
+    <ul class="lista">
         <li><a href="/cadastrar">Cadastrar</a></li>
         <li><a href="/atualizar">Atualizar</a></li>
         <li><a href="/consultar">Consultar</a></li>
         <li><a href="/deletar">Deletar</a></li>
     </ul>
+    -->
+    <div class="box" style="margin:auto">
+        <div class="box-title">
+        <h2>Menu</h2>
+        </div>
+    
+        <div class="box-links">
+        <a href="/cadastrar.html">Cadastrar</a>
+        <a href="/atualizar.html">Atualizar</a>
+        <a href="/consultar.html">Consultar</a>
+        <a href="/deletar.html">Deletar</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
+    </footer>
 </body>
 </html>

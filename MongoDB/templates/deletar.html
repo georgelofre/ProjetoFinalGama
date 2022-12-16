@@ -5,8 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deleção</title>
+
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <script src="../../static/js/script.js"></script>
+
+    <style>
+        body {
+        background-image: url("../../static/img/bg.png");
+        background-size: 100%;
+        background-repeat: repeat-y;
+        }
+
+
+
+        form {
+    width: 30%;
+    height: 300px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 2%;
+    background-color: #D9D9D9;
+    display: grid;
+    column-gap: 5px;
+    row-gap: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-bottom: 50px;
+}
+
+.form h2 {
+    text-align: center;
+    color: #1C8B48;
+}
+
+select {
+    font-family: Raleway;
+    border-radius: 5px;   
+}
+
+input {
+    font-family: Raleway;
+    border-radius: 5px;
+    border-width: 1px;
+}
+    </style>
 </head>
+
 <body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="../../static/img/logo.png" alt="Sistema Orgânico"></a>
+            </div>
+        </div>   
+    </header>
+
     <form action="/deletar" method="get">
         <label for="nome">Produtos</label>
         <select name="nome" id="nome">

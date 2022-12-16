@@ -6,10 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta: {{ prodNome }}</title>
 </head>
+
+<link rel="stylesheet" href="../../static/css/style.css">
+<script src="../../static/js/script.js"></script>
+
+<style>
+    body {
+      background-image: url("../../static/img/bg.png");
+      background-size: 100%;
+      background-repeat: repeat-y;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: auto;
+        margin-left: 50px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+    }
+
+    th {
+        color: #1C8B48;
+        border-bottom: 1px solid black;
+        padding: 12px 15px;
+    }
+
+    td {
+        padding: 12px 15px;
+        text-align: center; 
+    }
+</style>
+
 <body>
-    <div class="consulta">
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="../../static/img/logo.png" alt="Sistema Orgânico"></a>
+            </div>
+        </div>   
+    </header>
+
+    <main>
+    <div>
         
-        <table class="consulta">
+        <table style="margin:auto">
             <tr>
                 <th>Produto</th>
                 <th>Preço</th>
@@ -22,7 +65,14 @@
             </tr>
         </table>
         </div>
-        <button onclick="location.href='../static/index.html'" type="button">Voltar</button>
+            <button onclick="location.href='../static/index.html'" type="button">Voltar</button>
+        </div>
+    </main>
     
+    
+
+        <footer class="footer">
+            <p>Sistema Orgânico | Desenvolvido por Grupo Sorte | DIV 2022</p>
+        </footer>
 </body>
 </html>
